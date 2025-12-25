@@ -1,0 +1,32 @@
+[
+  {
+    "building_id": "M-01",
+    "building_name_ar": "مبنى الطلاب رقم ١",
+    "building_name_en": "Male Building 1",
+    "gender": "male",
+    "floors_count": 5,
+    "rooms_per_floor": 20,
+    "facilities": ["صالة ألعاب", "مطعم", "مصلى", "غرفة دراسة"],
+    "security_level": 3,
+    "is_active": true,
+    "location": "الجانب الشمالي من الحرم الجامعي"
+  },
+  {
+    "building_id": "F-A",
+    "building_name_ar": "مبنى الطالبات أ",
+    "building_name_en": "Female Building A",
+    "gender": "female",
+    "floors_count": 4,
+    "rooms_per_floor": 15,
+    "facilities": ["صالة رياضية نسائية", "مطعم", "مصلى", "صالون", "حديقة داخلية"],
+    "security_level": 5,
+    "is_active": true,
+    "location": "الجانب الجنوبي المحصور",
+    "security_features": [
+      "كاميرات مراقبة 24/7",
+      "نظام دخول إلكتروني",
+      "سجل حضور وانصراف",
+      "حراسة نسائية"
+    ]
+  }
+]
