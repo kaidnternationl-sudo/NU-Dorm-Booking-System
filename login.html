@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - نظام حجز السكن الجامعي</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .login-container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .login-header {
+            margin-bottom: 30px;
+        }
+        
+        .login-header h1 {
+            color: #1a5d1a;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .login-input, .login-select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .login-input:focus, .login-select:focus {
+            outline: none;
+            border-color: #1a5d1a;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #1a5d1a, #2e8b57);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        
+        .login-btn:hover {
+            background: linear-gradient(135deg, #2e8b57, #1a5d1a);
+        }
+        
+        .demo-info {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: right;
+        }
+        
+        .demo-info h4 {
+            color: #1a5d1a;
+            margin-bottom: 10px;
+        }
+        
+        .user-details-section {
+            background: #f0f9f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        
+        .user-details-section h4 {
+            color: #1a5d1a;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <div style="color: #1a5d1a; font-weight: bold; margin-bottom: 10px; font-size: 1.5rem;">
+                جامعة نجران
+            </div>
+            <h1><i class="fas fa-user-shield"></i> تسجيل الدخول</h1>
+            <p>الدخول عبر البوابة الوطنية الموحدة (نفاذ)</p>
+        </div>
+        
+        <form id="loginForm">
+            <div class="user-details-section">
+                <h4><i class="fas fa-id-card"></i> معلومات الهوية</h4>
+                
+                <div class="form-group">
+                    <label for="national_id">رقم الهوية الوطنية</label>
+                    <input type="text" id="national_id" class="login-input" placeholder="أدخل 10 أرقام تبدأ بـ 1 أو 2" required>
+                    <small style="color: #666; display: block; margin-top: 5px;">يجب أن يبدأ الرقم بـ 1 للسعوديين أو 2 للمقيمين</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" class="login-input" placeholder="أدخل كلمة المرور" required>
+                </div>
+            </div>
+            
+            <div class="user-details-section">
+                <h4><i class="fas fa-user-graduate"></i> المعلومات الأكاديمية</h4>
+                
+                <div class="form-group">
+                    <label for="student_name">الاسم الكامل</label>
+                    <input type="text" id="student_name" class="login-input" placeholder="أدخل اسمك الكامل" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="student_gpa">المعدل التراكمي</label>
+                    <select id="student_gpa" class="login-select" required>
+                        <option value="">اختر معدلك التراكمي</option>
+                        <option value="5.0">5.0 - ممتاز مرتفع</option>
+                        <option value="4.75">4.75 - ممتاز</option>
+                        <option value="4.5">4.5 - جيد جداً مرتفع</option>
+                        <option value="4.0">4.0 - جيد جداً</option>
+                        <option value="3.75">3.75 - جيد مرتفع</option>
+                        <option value="3.5">3.5 - جيد</option>
+                        <option value="3.0">3.0 - مقبول</option>
+                        <option value="2.5">2.5 - مقبول منخفض</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="student_city">مدينة السكن الأصلية</label>
+                    <select id="student_city" class="login-select" required>
+                        <option value="">اختر مدينتك</option>
+                        <option value="نجران">نجران</option>
+                        <option value="شرورة">شرورة</option>
+                        <option value="الرياض">الرياض</option>
+                        <option value="جدة">جدة</option>
+                        <option value="الدمام">الدمام</option>
+                        <option value="أبها">أبها</option>
+                        <option value="جازان">جازان</option>
+                        <option value="القصيم">القصيم</option>
+                        <option value="حائل">حائل</option>
+                        <option value="تبوك">تبوك</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="user_gender">النوع</label>
+                    <select id="user_gender" class="login-select" required>
+                        <option value="">اختر نوعك</option>
+                        <option value="male">ذكر</option>
+                        <option value="female">أنثى</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="submit" class="login-btn">
+                <i class="fas fa-sign-in-alt"></i> دخول عبر نفاذ
+            </button>
+        </form>
+        
+        <div class="demo-info">
+            <h4><i class="fas fa-info-circle"></i> معلومات للعرض التوضيحي:</h4>
+            <p>للدخول: استخدم رقم هوية يبدأ بـ 1 أو 2 ومكون من 10 أرقام</p>
+            <p>المعدل والمدينة: يتم استخدامها لحساب أولويتك في المفاضلة</p>
+        </div>
+        
+        <a href="index.html" style="display: inline-block; margin-top: 20px; color: #1a5d1a; text-decoration: none;">
+            <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
+        </a>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const idValue = document.getElementById('national_id').value.trim();
+            const passValue = document.getElementById('password').value.trim();
+            const studentName = document.getElementById('student_name').value.trim();
+            const studentGPA = parseFloat(document.getElementById('student_gpa').value);
+            const studentCity = document.getElementById('student_city').value;
+            const userGender = document.getElementById('user_gender').value;
+            
+            // التحقق من أن جميع الحقول مملوءة
+            if (!idValue || !passValue || !studentName || !studentGPA || !studentCity || !userGender) {
+                alert("خطأ: يرجى ملء جميع الحقول المطلوبة");
+                return;
+            }
+            
+            // التحقق من بداية رقم الهوية
+            if (!idValue.startsWith('1') && !idValue.startsWith('2')) {
+                alert("خطأ: يجب أن يبدأ رقم الهوية بـ 1 أو 2");
+                return;
+            }
+            
+            // التحقق من طول رقم الهوية
+            if (idValue.length !== 10) {
+                alert("خطأ: يجب أن يتكون رقم الهوية من 10 أرقام بدقة");
+                return;
+            }
+            
+            // التحقق من أن الرقم يحتوي على أرقام فقط
+            if (!/^\d+$/.test(idValue)) {
+                alert("خطأ: يجب أن يحتوي رقم الهوية على أرقام فقط");
+                return;
+            }
+            
+            // التحقق من المعدل التراكمي
+            if (studentGPA < 2.0 || studentGPA > 5.0) {
+                alert("خطأ: المعدل التراكمي يجب أن يكون بين 2.0 و 5.0");
+                return;
+            }
+            
+            // تخزين بيانات المستخدم الديناميكية
+            localStorage.setItem('national_id', idValue);
+            localStorage.setItem('loggedIn', 'true');
+            localStorage.setItem('userType', userGender);
+            localStorage.setItem('userGender', userGender === 'male' ? 'ذكر' : 'أنثى');
+            localStorage.setItem('loginTime', new Date().toISOString());
+            
+            // تخزين المعلومات الأكاديمية
+            const userData = {
+                id: idValue,
+                name: studentName,
+                gender: userGender,
+                gpa: studentGPA,
+                city: studentCity,
+                college: getRandomCollege(userGender),
+                priority: calculateInitialPriority(studentGPA, studentCity, userGender)
+            };
+            
+            localStorage.setItem('userData', JSON.stringify(userData));
+            
+            // تسجيل بيانات الدخول في سجل النظام
+            const loginRecord = {
+                id: idValue,
+                name: studentName,
+                time: new Date().toISOString(),
+                gpa: studentGPA,
+                city: studentCity
+            };
+            
+            // إضافة إلى سجل الدخول
+            const loginHistory = JSON.parse(localStorage.getItem('loginHistory')) || [];
+            loginHistory.push(loginRecord);
+            localStorage.setItem('loginHistory', JSON.stringify(loginHistory));
+            
+            // الانتقال إلى صفحة اختيار المبنى
+            window.location.href = 'building_selection.html';
+        });
+        
+        function getRandomCollege(gender) {
+            const maleColleges = [
+                'كلية علوم الحاسب',
+                'كلية الهندسة',
+                'كلية الطب',
+                'كلية الصيدلة',
+                'كلية العلوم',
+                'كلية إدارة الأعمال'
+            ];
+            
+            const femaleColleges = [
+                'كلية الطب',
+                'كلية الصيدلة',
+                'كلية التمريض',
+                'كلية العلوم الطبية',
+                'كلية التربية',
+                'كلية الآداب'
+            ];
+            
+            const colleges = gender === 'male' ? maleColleges : femaleColleges;
+            return colleges[Math.floor(Math.random() * colleges.length)];
+        }
+        
+        function calculateInitialPriority(gpa, city, gender) {
+            // حساب الأولوية الأولية بناءً على GPA والمدينة
+            let baseScore = (gpa / 5) * 40; // 40% للمعدل
+            
+            // حساب نقاط المسافة
+            const distanceScores = {
+                'نجران': 40,
+                'شرورة': 35,
+                'أبها': 30,
+                'جازان': 28,
+                'الرياض': 25,
+                'جدة': 22,
+                'الدمام': 20,
+                'القصيم': 18,
+                'حائل': 15,
+                'تبوك': 12
+            };
+            
+            const distanceScore = distanceScores[city] || 15; // 40% للمسافة
+            
+            // نقاط إضافية حسب النوع (محاكاة لسياسات الجامعة)
+            const genderBonus = gender === 'female' ? 5 : 0; // تفضيل بسيط للطالبات
+            
+            const totalScore = baseScore + distanceScore + genderBonus;
+            return Math.min(100, Math.round(totalScore));
+        }
+        
+        // توليد اسم عشوائي عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            const maleNames = ['محمد أحمد العتيبي', 'خالد سعيد الحربي', 'عبدالله راشد القحطاني', 'سعود ناصر الشمري'];
+            const femaleNames = ['نورة سعد القحطاني', 'سارة عبدالعزيز الحربي', 'فاطمة محمد العتيبي', 'لينه خالد الشمري'];
+            
+            const randomName = Math.random() > 0.5 ? 
+                maleNames[Math.floor(Math.random() * maleNames.length)] : 
+                femaleNames[Math.floor(Math.random() * femaleNames.length)];
+            
+            document.getElementById('student_name').value = randomName;
+            
+            // تعيين قيمة عشوائية للمعدل بين 3.5 و 5.0
+            const randomGPA = (Math.random() * 1.5 + 3.5).toFixed(2);
+            document.getElementById('student_gpa').value = parseFloat(randomGPA);
+        });
+    </script>
+</body>
+</html>
