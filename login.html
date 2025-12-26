@@ -76,8 +76,8 @@
         </div>
         
         <form id="loginForm">
-            <input type="text" class="login-input" placeholder="رقم الهوية الوطنية" required>
-            <input type="password" class="login-input" placeholder="كلمة المرور" required>
+            <input type="text" id="national_id" class="login-input" placeholder="رقم الهوية الوطنية" required>
+            <input type="password" id="password" class="login-input" placeholder="كلمة المرور" required>
             
             <button type="submit" class="login-btn">
                 <i class="fas fa-sign-in-alt"></i> دخول عبر نفاذ
@@ -86,9 +86,8 @@
         
         <div class="demo-info">
             <h4><i class="fas fa-info-circle"></i> معلومات للعرض التوضيحي:</h4>
-            <p>للدخول كـ <strong>طالب</strong>: استخدم أي رقم هوية</p>
-            <p>للدخول كـ <strong>طالبة</strong>: استخدم أي رقم هوية</p>
-            <p>سيتم توجيهك تلقائياً للوحة المناسبة</p>
+            <p>للدخول: استخدم رقم هوية يبدأ بـ 1 أو 2 ومكون من 10 أرقام</p>
+            <p>كلمة المرور: يمكن استخدام أي كلمة مرور</p>
         </div>
         
         <a href="index.html" style="display: inline-block; margin-top: 20px; color: var(--nu-green);">
@@ -100,18 +99,58 @@
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // محاكاة تسجيل الدخول
+            const idValue = document.getElementById('national_id').value.trim();
+            const passValue = document.getElementById('password').value.trim();
+            
+            // التحقق من أن رقم الهوية ليس فارغاً
+            if (!idValue) {
+                alert("خطأ: يرجى إدخال رقم الهوية");
+                return;
+            }
+            
+            // التحقق من أن كلمة المرور ليست فارغة
+            if (!passValue) {
+                alert("خطأ: يرجى إدخال كلمة المرور");
+                return;
+            }
+            
+            // التحقق من بداية رقم الهوية
+            if (!idValue.startsWith('1') && !idValue.startsWith('2')) {
+                alert("خطأ: يجب أن يبدأ رقم الهوية بـ 1 أو 2");
+                return;
+            }
+            
+            // التحقق من طول رقم الهوية
+            if (idValue.length < 10) {
+                alert("خطأ: رقم الهوية ناقص");
+                return;
+            }
+            
+            if (idValue.length > 10) {
+                alert("خطأ: رقم الهوية يتجاوز 10 أرقام");
+                return;
+            }
+            
+            // التحقق من أن الرقم يحتوي على أرقام فقط
+            if (!/^\d+$/.test(idValue)) {
+                alert("خطأ: يجب أن يحتوي رقم الهوية على أرقام فقط");
+                return;
+            }
+            
+            // إذا اجتاز جميع الشروط، نقوم بتسجيل الدخول
             const urlParams = new URLSearchParams(window.location.search);
             const userType = urlParams.get('userType') || 'male';
             
+            // تخزين رقم الهوية الفعلي الذي أدخله المستخدم
+            localStorage.setItem('national_id', idValue);
             localStorage.setItem('loggedIn', 'true');
             localStorage.setItem('userType', userType);
             localStorage.setItem('userGender', userType === 'male' ? 'ذكر' : 'أنثى');
             localStorage.setItem('loginTime', new Date().toISOString());
             
-            // بيانات وهمية للطالب
+            // تحديث بيانات المستخدم باستخدام رقم الهوية الحقيقي
             const userData = {
-                id: userType === 'male' ? '441234567' : '445555555',
+                id: idValue, // استخدام الرقم الذي أدخله المستخدم
                 name: userType === 'male' ? 'محمد أحمد العتيبي' : 'نورة سعد القحطاني',
                 gender: userType,
                 gpa: 4.8,
@@ -122,8 +161,8 @@
             
             localStorage.setItem('userData', JSON.stringify(userData));
             
-            // الانتقال للوحة التحكم
-            window.location.href = 'dashboard.html';
+            // الانتقال إلى صفحة اختيار المبنى (المرحلة التالية)
+            window.location.href = 'building_selection.html';
         });
     </script>
 </body>
