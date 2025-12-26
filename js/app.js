@@ -16,9 +16,12 @@ class DormSystem {
     }
 
     loadData() {
+        // جلب رقم الهوية من localStorage إن وجد
+        const storedId = localStorage.getItem('national_id');
+        
         this.students = JSON.parse(localStorage.getItem('students')) || [
             {
-                id: '441234567',
+                id: storedId || '441234567', // استخدام الرقم المخزن أو الرقم الافتراضي
                 name: 'محمد أحمد العتيبي',
                 gender: 'male',
                 gpa: 4.8,
@@ -120,8 +123,11 @@ class DormSystem {
     login(idNumber, gender) {
         return new Promise((resolve) => {
             setTimeout(() => {
+                // استخدام الرقم من localStorage إن وجد
+                const storedId = localStorage.getItem('national_id') || idNumber;
+                
                 this.currentUser = {
-                    id: idNumber,
+                    id: storedId,
                     gender: gender,
                     loginTime: new Date(),
                     sessionId: 'SESS-' + Date.now()
@@ -139,6 +145,7 @@ class DormSystem {
         this.currentUser = null;
         localStorage.removeItem('currentUser');
         localStorage.removeItem('selectedRoom');
+        localStorage.removeItem('national_id');
         window.location.href = '/';
     }
 
