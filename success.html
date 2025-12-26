@@ -1,0 +1,319 @@
+<script>
+    // البيانات الديناميكية
+    document.addEventListener('DOMContentLoaded', function() {
+        // التحقق من الحجز
+        const selectedRoom = JSON.parse(localStorage.getItem('selectedRoom')) || null;
+        const userData = JSON.parse(localStorage.getItem('userData')) || {};
+        const userType = localStorage.getItem('userType') || 'male';
+        const buildingId = localStorage.getItem('selectedBuilding');
+        
+        if (!selectedRoom) {
+            alert('لم يتم العثور على بيانات الحجز. يرجى البدء من جديد.');
+            window.location.href = 'building_selection.html';
+            return;
+        }
+        
+        // تطبيق النسخة المناسبة حسب النوع
+        if (userType === 'female') {
+            applyFemaleTheme();
+        }
+        
+        // عرض محاكاة إرسال البيانات
+        simulateAPISend();
+        
+        // توليد رقم مرجعي فريد
+        const referenceNumber = generateReferenceNumber(userData.id);
+        document.getElementById('referenceNumber').textContent = referenceNumber;
+        
+        // حفظ الرقم المرجعي
+        localStorage.setItem('lastReference', referenceNumber);
+        
+        // تعبئة بيانات الطالب
+        document.getElementById('studentName').textContent = userData.name || 'غير محدد';
+        document.getElementById('studentId').textContent = userData.id || 'غير محدد';
+        document.getElementById('studentGPA').textContent = userData.gpa || 'غير محدد';
+        document.getElementById('studentCity').textContent = userData.city || 'غير محدد';
+        document.getElementById('priorityScore').textContent = (userData.priority || 75) + '%';
+        
+        // تعبئة بيانات الحجز
+        document.getElementById('buildingNumber').textContent = buildingId || 'غير محدد';
+        document.getElementById('roomNumber').textContent = selectedRoom.id || 'غير محدد';
+        document.getElementById('roomType').textContent = selectedRoom.type || 'غير محدد';
+        document.getElementById('roomFloor').textContent = selectedRoom.floor || 'غير محدد';
+        document.getElementById('roomPrice').textContent = (selectedRoom.price || 5000).toLocaleString() + ' ريال';
+        
+        // حساب المبلغ الإجمالي
+        const roomPrice = selectedRoom.price || 5000;
+        const serviceFee = 500;
+        const tax = roomPrice * 0.15;
+        const totalAmount = roomPrice + serviceFee + tax;
+        
+        document.getElementById('totalAmount').textContent = totalAmount.toLocaleString() + ' ريال';
+        
+        // تاريخ الحجز
+        const now = new Date();
+        document.getElementById('reservationDate').textContent = now.toLocaleDateString('ar-SA') + ' ' + now.toLocaleTimeString('ar-SA');
+        
+        // إرسال البيانات إلى الخزنة السرية
+        sendToVault(userData, selectedRoom, buildingId, referenceNumber, totalAmount);
+    });
+    
+    function applyFemaleTheme() {
+        // تغيير السمة للطالبات
+        document.getElementById('successHeader').classList.add('female-theme');
+        document.getElementById('reservationNumber').classList.add('female-theme');
+        document.getElementById('studentCard').classList.add('female-theme');
+        document.getElementById('reservationCard').classList.add('female-theme');
+        document.getElementById('priorityCard').classList.add('female-theme');
+        
+        // تغيير الأيقونات
+        const icon = document.querySelector('.success-icon i');
+        icon.className = 'fas fa-star';
+        
+        // تغيير النصوص
+        document.querySelector('.success-subtitle').textContent = 'تم إرسال طلبكِ إلى خادم جامعة نجران بنجاح';
+    }
+    
+    function generateReferenceNumber(nationalId) {
+        const date = new Date();
+        const timestamp = date.getTime().toString().slice(-6);
+        const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+        return `NU-${nationalId.slice(-4)}-${timestamp}-${random}`;
+    }
+    
+    function simulateAPISend() {
+        // عرض رسالة التحميل
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const apiMessage = document.getElementById('apiMessage');
+        
+        loadingSpinner.style.display = 'block';
+        
+        // محاكاة إرسال API
+        setTimeout(() => {
+            loadingSpinner.style.display = 'none';
+            apiMessage.style.display = 'block';
+            
+            // محاكاة استجابة الخادم
+            console.log('✅ تم إرسال البيانات إلى خادم جامعة نجران');
+            
+            // إظهار رسالة شكر رسمية
+            showThankYouMessage();
+        }, 3000);
+    }
+    
+    function showThankYouMessage() {
+        // إظهار رسالة شكر رسمية للطالب
+        const thankYouMessage = document.createElement('div');
+        thankYouMessage.className = 'thank-you-message';
+        thankYouMessage.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                animation: fadeIn 0.5s ease;
+            ">
+                <div style="
+                    background: linear-gradient(135deg, #1a5d1a, #2e8b57);
+                    padding: 40px;
+                    border-radius: 20px;
+                    text-align: center;
+                    max-width: 500px;
+                    width: 90%;
+                    color: white;
+                    animation: slideUp 0.5s ease;
+                ">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🎓</div>
+                    <h2 style="margin-bottom: 15px; font-size: 1.8rem;">تم إرسال طلبك بنجاح</h2>
+                    <p style="margin-bottom: 20px; font-size: 1.2rem;">
+                        شكراً لك على استخدام نظام سكن جامعة نجران
+                    </p>
+                    <p style="margin-bottom: 30px; opacity: 0.9;">
+                        تم إرسال طلبك بنجاح إلى عمادة شؤون الطلاب<br>
+                        وتم حفظه في قاعدة البيانات المشفرة
+                    </p>
+                    <button onclick="closeThankYouMessage()" style="
+                        background: white;
+                        color: #1a5d1a;
+                        border: none;
+                        padding: 12px 30px;
+                        border-radius: 10px;
+                        font-size: 1.1rem;
+                        font-weight: bold;
+                        cursor: pointer;
+                    ">
+                        موافق
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        // إضافة الأنماط
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes slideUp {
+                from { transform: translateY(50px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        document.body.appendChild(thankYouMessage);
+    }
+    
+    function closeThankYouMessage() {
+        const message = document.querySelector('.thank-you-message');
+        if (message) {
+            message.remove();
+        }
+    }
+    
+    function sendToVault(userData, roomData, buildingId, referenceNumber, totalAmount) {
+        // توليد بيانات الطالب الكاملة للخزنة
+        const studentRecord = {
+            // البيانات الشخصية والاتصال
+            fullName: userData.name,
+            nationalId: userData.id,
+            universityId: generateUniversityId(userData.id),
+            phone: generateSaudiPhone(),
+            email: generateUniversityEmail(userData.name, userData.id),
+            guardianPhone: generateSaudiPhone(),
+            
+            // البيانات الأكاديمية
+            major: userData.college || 'غير محدد',
+            studyType: 'انتظام',
+            admissionDate: generateAdmissionDate(),
+            gpa: userData.gpa,
+            
+            // تفاصيل السكن
+            building: buildingId,
+            room: roomData.id,
+            roomType: roomData.type,
+            roomPrice: roomData.price,
+            totalFees: totalAmount,
+            
+            // بيانات النظام
+            referenceNumber: referenceNumber,
+            applicationDate: new Date().toISOString(),
+            documentStatus: 'مرفق',
+            paymentStatus: 'بانتظار الدفع',
+            status: 'مؤكد',
+            priority: userData.priority || 75,
+            city: userData.city,
+            gender: userData.gender === 'male' ? 'ذكر' : 'أنثى',
+            registrationDate: new Date().toLocaleDateString('ar-SA')
+        };
+        
+        // إرسال البيانات إلى الخزنة
+        if (window.addToVault) {
+            window.addToVault(studentRecord);
+            console.log('📦 تم إرسال البيانات إلى الخزنة السرية:', studentRecord);
+        } else {
+            // حفظ مؤقت في localStorage إذا لم تكن الخزنة متاحة
+            const vaultBackup = JSON.parse(localStorage.getItem('vaultBackup') || '[]');
+            vaultBackup.push(studentRecord);
+            
+            // الاحتفاظ بآخر 20 فقط
+            if (vaultBackup.length > 20) {
+                vaultBackup.shift();
+            }
+            
+            localStorage.setItem('vaultBackup', JSON.stringify(vaultBackup));
+            console.log('📦 تم حفظ البيانات في النسخ الاحتياطي:', studentRecord);
+        }
+        
+        // إضافة إلى سجل جميع الحجوزات
+        addToAllReservations(userData, roomData, buildingId, referenceNumber, studentRecord);
+    }
+    
+    function generateUniversityId(nationalId) {
+        // توليد رقم جامعي عشوائي
+        const year = new Date().getFullYear().toString().slice(-2);
+        const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+        return `NU${year}${random}`;
+    }
+    
+    function generateSaudiPhone() {
+        // توليد رقم هاتف سعودي
+        const prefixes = ['050', '055', '056', '057', '058', '059'];
+        const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+        const number = Math.floor(Math.random() * 10000000).toString().padStart(7, '0');
+        return `${prefix}${number}`;
+    }
+    
+    function generateUniversityEmail(name, id) {
+        // توليد بريد جامعي
+        const nameParts = name.split(' ');
+        const firstName = nameParts[0] || 'student';
+        const lastName = nameParts[nameParts.length - 1] || 'nu';
+        return `${firstName}.${lastName}.${id.slice(-4)}@nu.edu.sa`.toLowerCase();
+    }
+    
+    function generateAdmissionDate() {
+        // توليد تاريخ التحاق عشوائي (آخر 4 سنوات)
+        const currentYear = new Date().getFullYear();
+        const year = currentYear - Math.floor(Math.random() * 4);
+        const month = Math.floor(Math.random() * 12) + 1;
+        const day = Math.floor(Math.random() * 28) + 1;
+        return `${year}/${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}`;
+    }
+    
+    function addToAllReservations(userData, roomData, buildingId, reference, studentRecord) {
+        const allReservations = JSON.parse(localStorage.getItem('all_reservations')) || [];
+        
+        const reservation = {
+            id: reference,
+            studentId: userData.id,
+            studentName: userData.name,
+            studentGPA: userData.gpa,
+            studentCity: userData.city,
+            studentGender: userData.gender,
+            phone: studentRecord.phone,
+            email: studentRecord.email,
+            guardianPhone: studentRecord.guardianPhone,
+            major: studentRecord.major,
+            studyType: studentRecord.studyType,
+            admissionDate: studentRecord.admissionDate,
+            roomId: roomData.id,
+            roomType: roomData.type,
+            roomPrice: roomData.price,
+            buildingId: buildingId,
+            reservationDate: new Date().toISOString(),
+            status: 'مؤكد',
+            priority: userData.priority || 75,
+            documentStatus: 'مرفق'
+        };
+        
+        allReservations.push(reservation);
+        
+        // الاحتفاظ بآخر 20 فقط
+        if (allReservations.length > 20) {
+            allReservations.shift();
+        }
+        
+        localStorage.setItem('all_reservations', JSON.stringify(allReservations));
+    }
+    
+    function printReservation() {
+        window.print();
+    }
+    
+    function goToDashboard() {
+        // منع الطالب من الوصول إلى لوحة التحكم
+        alert('⚠️ هذه الصفحة مخصصة للإدارة فقط.\nتم إرسال طلبك بنجاح إلى عمادة شؤون الطلاب.');
+    }
+    
+    function goToHome() {
+        window.location.href = 'index.html';
+    }
+          </script>
