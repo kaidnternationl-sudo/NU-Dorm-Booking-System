@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختيار المبنى - نظام سكن جامعة نجران</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --nu-green: #1a5d1a;
+            --nu-green-light: #2e8b57;
+            --light-gray: #e0e0e0;
+            --light: #f9f9f9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .header-content h1 {
+            color: var(--nu-green);
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .header-content p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .user-info-card {
+            background: #f0f9f0;
+            padding: 15px 25px;
+            border-radius: 10px;
+            border-right: 5px solid var(--nu-green);
+            min-width: 300px;
+        }
+        
+        .user-info-card p {
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+        
+        .user-info-card strong {
+            color: var(--nu-green);
+        }
+        
+        .priority-section {
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-right: 5px solid #ff9800;
+        }
+        
+        .priority-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .priority-header i {
+            color: #ff9800;
+            margin-left: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .priority-value {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: var(--nu-green);
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .priority-details {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .priority-details ul {
+            list-style: none;
+            padding-right: 20px;
+        }
+        
+        .priority-details li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .priority-details li:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            color: var(--nu-green);
+            margin: 25px 0 15px 0;
+            font-size: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .buildings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .building-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .building-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: var(--nu-green);
+        }
+        
+        .building-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .building-name {
+            font-size: 1.4rem;
+            color: var(--nu-green);
+            font-weight: bold;
+        }
+        
+        .building-code {
+            background: var(--nu-green);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .building-details {
+            margin-bottom: 25px;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .detail-label {
+            color: #666;
+        }
+        
+        .detail-value {
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .availability-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .select-btn {
+            background: linear-gradient(135deg, var(--nu-green), var(--nu-green-light));
+            color: white;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .select-btn:hover {
+            background: linear-gradient(135deg, var(--nu-green-light), var(--nu-green));
+            transform: scale(1.02);
+        }
+        
+        .select-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid var(--light-gray);
+        }
+        
+        .nav-btn {
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn.back {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .nav-btn.back:hover {
+            background: #e0e0e0;
+        }
+        
+        .nav-btn.next {
+            background: linear-gradient(135deg, var(--nu-green), var(--nu-green-light));
+            color: white;
+        }
+        
+        .nav-btn.next:hover {
+            background: linear-gradient(135deg, var(--nu-green-light), var(--nu-green));
+        }
+        
+        .alert-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            border-right: 5px solid #2196f3;
+            margin-bottom: 20px;
+        }
+        
+        .alert-box i {
+            color: #2196f3;
+            margin-left: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .user-info-card {
+                margin-top: 20px;
+                min-width: 100%;
+            }
+            
+            .buildings-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-btn {
+                justify-content: center;
+            }
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        .loading i {
+            font-size: 2rem;
+            color: var(--nu-green);
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- رأس الصفحة -->
+        <div class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-building"></i> اختيار المبنى السكني</h1>
+                <p>المرحلة الثانية: فحص الاستحقاق واختيار المبنى المناسب</p>
+            </div>
+            
+            <div class="user-info-card">
+                <p><i class="fas fa-id-card"></i> <strong>رقم الهوية:</strong> <span id="displayNationalId">-</span></p>
+                <p><i class="fas fa-user"></i> <strong>النوع:</strong> <span id="displayGender">-</span></p>
+                <p><i class="fas fa-calendar-alt"></i> <strong>وقت الدخول:</strong> <span id="loginTime">-</span></p>
+            </div>
+        </div>
+        
+        <!-- قسم الأولوية -->
+        <div class="priority-section">
+            <div class="priority-header">
+                <i class="fas fa-chart-line"></i>
+                <h2>أولويتك في مفاضلة السكن</h2>
+            </div>
+            
+            <div class="priority-value" id="priorityScore">%</div>
+            
+            <p style="text-align: center; color: #666; margin-bottom: 15px;">
+                تقوم إدارة الإسكان بحساب الأولوية بناءً على المعايير التالية:
+            </p>
+            
+            <div class="priority-details">
+                <ul>
+                    <li><strong>المسافة من الجامعة:</strong> <span id="distanceScore">-</span> (40%)</li>
+                    <li><strong>المعدل التراكمي:</strong> <span id="gpaScore">-</span> (40%)</li>
+                    <li><strong>الحالة الاجتماعية:</strong> <span id="socialScore">-</span> (20%)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- رسالة تنبيه -->
+        <div class="alert-box">
+            <i class="fas fa-info-circle"></i>
+            <strong>ملاحظة هامة:</strong> عند اختيار المبنى، سيتم توجيهك لاختيار الغرفة المناسبة. لديك 5 دقائق لإتمام عملية الحجز.
+        </div>
+        
+        <!-- المباني المتاحة -->
+        <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> المباني المتاحة للسكن</h2>
+        <p style="margin-bottom: 20px; color: #666; text-align: center;">
+            اختر المبنى المناسب لك. سيتم عرض المبانية المتاحة حسب نوعك (ذكر/أنثى)
+        </p>
+        
+        <div class="buildings-grid" id="buildingsList">
+            <!-- سيتم ملء المباني ديناميكياً بواسطة JavaScript -->
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>جاري تحميل المباني المتاحة...</p>
+            </div>
+        </div>
+        
+        <!-- أزرار التنقل -->
+        <div class="navigation-buttons">
+            <a href="login.html" class="nav-btn back">
+                <i class="fas fa-arrow-right"></i> العودة لتسجيل الدخول
+            </a>
+            
+            <a href="#" id="nextPageBtn" class="nav-btn next" style="display: none;">
+                التالي: اختيار الغرفة <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- ربط ملف JavaScript الرئيسي -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // كود JavaScript الخاص بصفحة اختيار المبنى
+        document.addEventListener('DOMContentLoaded', function() {
+            // التحقق من تسجيل الدخول
+            const isLoggedIn = localStorage.getItem('loggedIn');
+            if (!isLoggedIn) {
+                alert('يجب تسجيل الدخول أولاً');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // استرجاع بيانات المستخدم من localStorage
+            const nationalId = localStorage.getItem('national_id');
+            const userData = JSON.parse(localStorage.getItem('userData')) || {};
+            const userType = localStorage.getItem('userType');
+            const loginTime = localStorage.getItem('loginTime');
+            
+            // عرض بيانات المستخدم
+            document.getElementById('displayNationalId').textContent = nationalId || 'غير محدد';
+            document.getElementById('displayGender').textContent = userData.gender === 'male' ? 'ذكر' : 'أنثى';
+            
+            if (loginTime) {
+                const date = new Date(loginTime);
+                document.getElementById('loginTime').textContent = date.toLocaleString('ar-SA');
+            }
+            
+            // حساب وعرض الأولوية
+            calculateAndDisplayPriority(userData);
+            
+            // توليد وعرض المباني المتاحة
+            displayAvailableBuildings(userType);
+            
+            // إعداد زر التالي
+            setupNextButton();
+        });
+        
+        function calculateAndDisplayPriority(userData) {
+            // حساب النقاط (محاكاة للنظام الحقيقي)
+            const gpa = userData.gpa || 4.8;
+            const city = userData.city || 'الرياض';
+            
+            // حساب نقاط المعدل التراكمي (40%)
+            const gpaScore = Math.round((gpa / 5) * 40);
+            
+            // حساب نقاط المسافة (40%)
+            const distanceScores = {
+                'نجران': 40,
+                'شرورة': 35,
+                'الرياض': 30,
+                'جدة': 30,
+                'الدمام': 28,
+                'أبها': 32,
+                'جازان': 34
+            };
+            const distanceScore = distanceScores[city] || 25;
+            
+            // نقاط الحالة الاجتماعية (20%)
+            const socialScore = 20;
+            
+            // المجموع الكلي
+            const totalScore = gpaScore + distanceScore + socialScore;
+            
+            // عرض النتائج
+            document.getElementById('priorityScore').textContent = totalScore + '%';
+            document.getElementById('distanceScore').textContent = distanceScore + ' نقطة';
+            document.getElementById('gpaScore').textContent = gpaScore + ' نقطة';
+            document.getElementById('socialScore').textContent = socialScore + ' نقطة';
+            
+            // تخزين نتيجة الأولوية للاستخدام لاحقاً
+            localStorage.setItem('priorityScore', totalScore);
+        }
+        
+        function displayAvailableBuildings(userType) {
+            const buildingsList = document.getElementById('buildingsList');
+            
+            // مسح شاشة التحميل
+            buildingsList.innerHTML = '';
+            
+            // البيانات حسب النوع
+            const buildingsData = userType === 'male' ? [
+                {
+                    id: 'M-01',
+                    name: 'مبنى الطلاب رقم 1',
+                    type: 'ذكور',
+                    floors: 5,
+                    availableRooms: 45,
+                    totalRooms: 120,
+                    location: 'قريب من الكافيتيريا والملاعب',
+                    facilities: ['واي فاي مجاني', 'صالة تلفزيون', 'مطبخ مشترك', 'غسالة ملابس'],
+                    distance: '50 متر من المبنى الأكاديمي'
+                },
+                {
+                    id: 'M-02',
+                    name: 'مبنى الطلاب رقم 2',
+                    type: 'ذكور',
+                    floors: 4,
+                    availableRooms: 32,
+                    totalRooms: 96,
+                    location: 'بجانب المكتبة المركزية',
+                    facilities: ['واي فاي مجاني', 'صالة مطالعة', 'كافيتيريا داخلية', 'نادي رياضي'],
+                    distance: '100 متر من المبنى الأكاديمي'
+                },
+                {
+                    id: 'M-03',
+                    name: 'مبنى الطلاب رقم 3',
+                    type: 'ذكور',
+                    floors: 6,
+                    availableRooms: 28,
+                    totalRooms: 144,
+                    location: 'قريب من البوابة الرئيسية',
+                    facilities: ['واي فاي مجاني', 'مسبح', 'صالة ألعاب', 'مطعم'],
+                    distance: '200 متر من المبنى الأكاديمي'
+                }
+            ] : [
+                {
+                    id: 'F-A',
+                    name: 'مبنى الطالبات أ',
+                    type: 'إناث',
+                    floors: 4,
+                    availableRooms: 40,
+                    totalRooms: 80,
+                    location: 'منطقة هادئة بالقرب من الحديقة',
+                    facilities: ['واي فاي مجاني', 'صالون تجميل', 'مكتبة', 'صالون شاي'],
+                    distance: '80 متر من المبنى الأكاديمي'
+                },
+                {
+                    id: 'F-B',
+                    name: 'مبنى الطالبات ب',
+                    type: 'إناث',
+                    floors: 5,
+                    availableRooms: 36,
+                    totalRooms: 100,
+                    location: 'بجانب المركز الصحي',
+                    facilities: ['واي فاي مجاني', 'نادي صحي', 'صالون مطالعة', 'مطبخ تعليمي'],
+                    distance: '120 متر من المبنى الأكاديمي'
+                },
+                {
+                    id: 'F-C',
+                    name: 'مبنى الطالبات ج',
+                    type: 'إناث',
+                    floors: 3,
+                    availableRooms: 24,
+                    totalRooms: 60,
+                    location: 'قريب من المسرح والأنشطة',
+                    facilities: ['واي فاي مجاني', 'مسرح داخلي', 'صالون فنون', 'مكتبة سمعية'],
+                    distance: '150 متر من المبنى الأكاديمي'
+                }
+            ];
+            
+            // إنشاء بطاقات المباني
+            buildingsData.forEach(building => {
+                const buildingCard = document.createElement('div');
+                buildingCard.className = 'building-card';
+                buildingCard.dataset.buildingId = building.id;
+                
+                // إنشاء قائمة المرافق
+                const facilitiesList = building.facilities.map(facility => 
+                    `<span style="display: inline-block; background: #f0f9f0; padding: 4px 8px; margin: 2px; border-radius: 15px; font-size: 0.85rem;">${facility}</span>`
+                ).join(' ');
+                
+                buildingCard.innerHTML = `
+                    <div class="building-header">
+                        <div class="building-name">${building.name}</div>
+                        <div class="building-code">${building.id}</div>
+                    </div>
+                    
+                    <div class="building-details">
+                        <div class="detail-row">
+                            <span class="detail-label">النوع:</span>
+                            <span class="detail-value">${building.type}</span>
+                        </div>
+                        
+                        <div class="detail-row">
+                            <span class="detail-label">عدد الطوابق:</span>
+                            <span class="detail-value">${building.floors}</span>
+                        </div>
+                        
+                        <div class="detail-row">
+                            <span class="detail-label">الغرف المتاحة:</span>
+                            <span class="detail-value">
+                                ${building.availableRooms} من ${building.totalRooms}
+                                <span class="availability-badge">${Math.round((building.availableRooms / building.totalRooms) * 100)}% متاح</span>
+                            </span>
+                        </div>
+                        
+                        <div class="detail-row">
+                            <span class="detail-label">الموقع:</span>
+                            <span class="detail-value">${building.location}</span>
+                        </div>
+                        
+                        <div class="detail-row">
+                            <span class="detail-label">المسافة:</span>
+                            <span class="detail-value">${building.distance}</span>
+                        </div>
+                        
+                        <div style="margin-top: 15px;">
+                            <strong>المرافق:</strong><br>
+                            <div style="margin-top: 8px;">${facilitiesList}</div>
+                        </div>
+                    </div>
+                    
+                    <button class="select-btn" onclick="selectBuilding('${building.id}')">
+                        <i class="fas fa-check-circle"></i> اختيار هذا المبنى
+                    </button>
+                `;
+                
+                buildingsList.appendChild(buildingCard);
+            });
+        }
+        
+        function selectBuilding(buildingId) {
+            // حفظ اختيار المبنى في localStorage
+            localStorage.setItem('selectedBuilding', buildingId);
+            
+            // تخزين وقت الاختيار
+            localStorage.setItem('buildingSelectionTime', new Date().toISOString());
+            
+            // عرض رسالة نجاح
+            alert(`✓ تم اختيار المبنى ${buildingId} بنجاح!`);
+            
+            // تفعيل زر التالي
+            document.getElementById('nextPageBtn').style.display = 'flex';
+            
+            // إضافة تأثير على البطاقة المختارة
+            document.querySelectorAll('.building-card').forEach(card => {
+                card.style.borderColor = '#e0e0e0';
+                card.style.boxShadow = '0 10px 25px rgba(0,0,0,0.08)';
+            });
+            
+            const selectedCard = document.querySelector(`[data-building-id="${buildingId}"]`);
+            if (selectedCard) {
+                selectedCard.style.borderColor = '#1a5d1a';
+                selectedCard.style.boxShadow = '0 0 0 3px rgba(26, 93, 26, 0.2)';
+            }
+        }
+        
+        function setupNextButton() {
+            const nextBtn = document.getElementById('nextPageBtn');
+            
+            nextBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const selectedBuilding = localStorage.getItem('selectedBuilding');
+                
+                if (!selectedBuilding) {
+                    alert('يرجى اختيار مبنى أولاً');
+                    return;
+                }
+                
+                // الانتقال إلى صفحة اختيار الغرفة (أو dashboard إذا لم تكن الصفحة موجودة)
+                // يمكنك تغيير هذا الرابط حسب هيكل مشروعك
+                window.location.href = 'dashboard.html';
+            });
+        }
+        
+        // ربط النظام الرئيسي إذا كان موجوداً
+        if (window.dormSystem) {
+            console.log('تم ربط نظام السكن بنجاح');
+        }
+    </script>
+</body>
+</html>
