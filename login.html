@@ -5,34 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تسجيل الدخول - نظام سكن جامعة نجران</title>
     
+    <!-- روابط CSS -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- أنماط خاصة بصفحة تسجيل الدخول -->
     <style>
-        /* أنماطك التي أرسلتها وضعتها لك هنا لتعمل الصفحة فوراً */
+        /* أنماط خاصة بصفحة تسجيل الدخول */
         .login-page {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, #f0f9f0 0%, #ffffff 100%);
-            padding: 40px 20px;
+            padding: 20px;
         }
+        
         .login-container {
-            background: #ffffff;
+            background: white;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(26, 93, 26, 0.15);
             overflow: hidden;
             width: 100%;
             max-width: 500px;
-            border: 2px solid #e9ecef;
+            border: 2px solid #e0e0e0;
         }
+        
         .login-header {
             background: linear-gradient(135deg, #1a5d1a, #2e8b57);
-            padding: 30px;
+            padding: 40px 30px;
             text-align: center;
-            color: #ffffff;
+            color: white;
         }
+        
+        .login-header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        
+        .login-header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .login-body {
+            padding: 40px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #1a5d1a;
+            box-shadow: 0 0 0 3px rgba(26, 93, 26, 0.1);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #1a5d1a, #2e8b57);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .login-btn:hover {
+            background: linear-gradient(135deg, #2e8b57, #1a5d1a);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(26, 93, 26, 0.3);
+        }
+        
+        .login-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .login-footer a {
+            color: #1a5d1a;
+            font-weight: 600;
+        }
+        
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            color: #1a5d1a;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
         .nafath-banner {
             background: linear-gradient(135deg, #0088cc, #005a8c);
             color: white;
@@ -42,63 +140,291 @@
             margin-bottom: 25px;
             border-left: 5px solid #d4af37;
         }
-        .form-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        
+        .university-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
         }
-        .login-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #1a5d1a, #2e8b57);
+        
+        .university-logo {
+            width: 60px;
+            height: 60px;
+            background: #1a5d1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            border: none;
-            border-radius: 10px;
+            font-size: 24px;
             font-weight: bold;
-            cursor: pointer;
+        }
+        
+        .university-text h2 {
+            color: #1a5d1a;
+            margin-bottom: 5px;
+            font-size: 1.5rem;
+        }
+        
+        .university-text p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .demo-info {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border-right: 4px solid #d4af37;
+        }
+        
+        .demo-info h4 {
+            color: #1a5d1a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .demo-info ul {
+            padding-right: 20px;
+        }
+        
+        .demo-info li {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .login-page {
+                padding: 80px 15px 30px;
+            }
+            
+            .login-container {
+                max-width: 100%;
+            }
+            
+            .login-body {
+                padding: 30px 20px;
+            }
+            
+            .university-info {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-
+    <!-- صفحة تسجيل الدخول -->
     <div class="login-page">
         <div class="login-container">
+            <!-- رأس الصفحة -->
             <div class="login-header">
-                <i class="fas fa-university fa-3x mb-3"></i>
-                <h1>جامعة نجران</h1>
-                <p>نظام حجز السكن الجامعي</p>
-            </div>
-
-            <div class="login-body">
-                <div class="nafath-banner">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>تسجيل الدخول عبر النفاذ الوطني الموحد</span>
-                </div>
-
-                <form action="success.html">
-                    <div class="form-group">
-                        <label class="form-label">رقم الهوية الوطنية</label>
-                        <input type="text" class="form-input" placeholder="1XXXXXXXXX" required>
+                <div class="university-info">
+                    <div class="university-logo">
+                        <i class="fas fa-university"></i>
                     </div>
-
+                    <div class="university-text">
+                        <h2>جامعة نجران</h2>
+                        <p>نظام حجز السكن الجامعي الذكي</p>
+                    </div>
+                </div>
+                <h1><i class="fas fa-user-shield"></i> تسجيل الدخول</h1>
+                <p>الدخول عبر البوابة الوطنية الموحدة (نفاذ)</p>
+            </div>
+            
+            <!-- جسم الصفحة -->
+            <div class="login-body">
+                <!-- بانر نفاذ -->
+                <div class="nafath-banner">
+                    <h3><i class="fas fa-shield-alt"></i> بوابة نفاذ الوطنية</h3>
+                    <p>نظام الدخول الموحد للحكومة السعودية</p>
+                </div>
+                
+                <!-- نموذج تسجيل الدخول -->
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="national_id" class="form-label">
+                            <i class="fas fa-id-card"></i> رقم الهوية الوطنية
+                        </label>
+                        <input type="text" 
+                               id="national_id" 
+                               class="form-input" 
+                               placeholder="أدخل رقم الهوية (10 أرقام)"
+                               required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" class="form-label">
+                            <i class="fas fa-lock"></i> كلمة المرور
+                        </label>
+                        <input type="password" 
+                               id="password" 
+                               class="form-input" 
+                               placeholder="أدخل كلمة المرور"
+                               required>
+                    </div>
+                    
+                    <!-- رسالة الخطأ -->
+                    <div class="error-message" id="errorMessage"></div>
+                    
+                    <!-- زر الدخول -->
                     <button type="submit" class="login-btn">
                         <i class="fas fa-sign-in-alt"></i> دخول عبر نفاذ
                     </button>
+                    
+                    <!-- شعار الأمان -->
+                    <div class="security-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>بياناتك محمية ومشفرة بأعلى معايير الأمان</span>
+                    </div>
                 </form>
-
-                <div class="security-badge">
-                    <i class="fas fa-lock"></i>
-                    <span>اتصال آمن وموثق NCSC</span>
+                
+                <!-- معلومات العرض التوضيحي -->
+                <div class="demo-info">
+                    <h4><i class="fas fa-info-circle"></i> معلومات للعرض التوضيحي:</h4>
+                    <ul>
+                        <li>رقم الهوية: يجب أن يبدأ بـ 1 أو 2 ويتكون من 10 أرقام</li>
+                        <li>كلمة المرور: يمكن استخدام أي كلمة مرور</li>
+                        <li>سيتم توجيهك تلقائياً للخطوة التالية</li>
+                    </ul>
                 </div>
-            </div>
-
-            <div class="login-footer">
-                <a href="index.html">العودة للرئيسية</a>
+                
+                <!-- رابط العودة -->
+                <div class="login-footer">
+                    <a href="index.html">
+                        <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- JavaScript -->
+    <script>
+        // التحقق من تسجيل الدخول
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const idValue = document.getElementById('national_id').value.trim();
+            const passValue = document.getElementById('password').value.trim();
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // إخفاء رسالة الخطأ السابقة
+            errorMessage.style.display = 'none';
+            
+            // التحقق من أن الحقول ليست فارغة
+            if (!idValue || !passValue) {
+                showError('يرجى ملء جميع الحقول المطلوبة');
+                return;
+            }
+            
+            // التحقق من أن رقم الهوية يبدأ بـ 1 أو 2
+            if (!idValue.startsWith('1') && !idValue.startsWith('2')) {
+                showError('يجب أن يبدأ رقم الهوية بـ 1 (للسعوديين) أو 2 (للمقيمين)');
+                return;
+            }
+            
+            // التحقق من طول رقم الهوية
+            if (idValue.length !== 10) {
+                showError('يجب أن يتكون رقم الهوية من 10 أرقام بالضبط');
+                return;
+            }
+            
+            // التحقق من أن الرقم يحتوي على أرقام فقط
+            if (!/^\d+$/.test(idValue)) {
+                showError('يجب أن يحتوي رقم الهوية على أرقام فقط');
+                return;
+            }
+            
+            // إذا اجتاز جميع الشروط
+            loginSuccessful(idValue, passValue);
+        });
+        
+        function showError(message) {
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+        
+        function loginSuccessful(id, password) {
+            // تغيير نص الزر
+            const loginBtn = document.querySelector('.login-btn');
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحقق...';
+            loginBtn.disabled = true;
+            
+            // تخزين بيانات المستخدم
+            const userData = {
+                id: id,
+                name: getRandomName(id),
+                gender: id.startsWith('1') ? 'male' : 'female',
+                gpa: getRandomGPA(),
+                city: getRandomCity(),
+                loginTime: new Date().toISOString()
+            };
+            
+            localStorage.setItem('national_id', id);
+            localStorage.setItem('userData', JSON.stringify(userData));
+            localStorage.setItem('loggedIn', 'true');
+            localStorage.setItem('userType', userData.gender);
+            
+            // محاكاة وقت التحقق
+            setTimeout(() => {
+                // إظهار رسالة النجاح
+                alert('✅ تم تسجيل الدخول بنجاح! يتم توجيهك الآن...');
+                
+                // الانتقال إلى صفحة اختيار المبنى
+                window.location.href = 'building_selection.html';
+            }, 1500);
+        }
+        
+        function getRandomName(id) {
+            const maleNames = ['محمد أحمد العتيبي', 'خالد سعيد الحربي', 'عبدالله راشد القحطاني'];
+            const femaleNames = ['نورة سعد القحطاني', 'سارة عبدالعزيز الحربي', 'فاطمة محمد العتيبي'];
+            
+            return id.startsWith('1') 
+                ? maleNames[Math.floor(Math.random() * maleNames.length)]
+                : femaleNames[Math.floor(Math.random() * femaleNames.length)];
+        }
+        
+        function getRandomGPA() {
+            const gpas = [4.8, 4.5, 4.2, 3.9, 3.5];
+            return gpas[Math.floor(Math.random() * gpas.length)];
+        }
+        
+        function getRandomCity() {
+            const cities = ['نجران', 'الرياض', 'جدة', 'الدمام', 'أبها', 'جازان'];
+            return cities[Math.floor(Math.random() * cities.length)];
+        }
+        
+        // تفعيل إدخال كلمة المرور عند الضغط على Enter
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            }
+        });
+        
+        // ملء رقم هوية عشوائي للاختبار
+        document.addEventListener('DOMContentLoaded', function() {
+            const randomId = (Math.random() > 0.5 ? '1' : '2') + 
+                            Math.floor(Math.random() * 900000000 + 100000000).toString();
+            document.getElementById('national_id').value = randomId;
+            document.getElementById('password').value = 'nu123456';
+        });
+    </script>
 </body>
 </html>
