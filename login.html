@@ -1,0 +1,145 @@
+<style>
+    /* أنماط خاصة بصفحة تسجيل الدخول */
+    .login-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #f0f9f0 0%, #ffffff 100%);
+        padding: 100px 20px 40px;
+    }
+    
+    .login-container {
+        background: var(--nu-white);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(26, 93, 26, 0.15);
+        overflow: hidden;
+        width: 100%;
+        max-width: 500px;
+        border: 2px solid var(--nu-gray);
+    }
+    
+    .login-header {
+        background: linear-gradient(135deg, var(--nu-green), var(--nu-green-light));
+        padding: 40px 30px;
+        text-align: center;
+        color: var(--nu-white);
+    }
+    
+    .login-header h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        font-weight: 800;
+    }
+    
+    .login-header p {
+        opacity: 0.9;
+        font-size: 1.1rem;
+    }
+    
+    .login-body {
+        padding: 40px;
+    }
+    
+    .form-group {
+        margin-bottom: 25px;
+    }
+    
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--nu-dark);
+        font-weight: 600;
+        font-size: 1rem;
+    }
+    
+    .form-input {
+        width: 100%;
+        padding: 15px 20px;
+        border: 2px solid var(--nu-gray);
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: 'Tajawal', sans-serif;
+        transition: var(--transition);
+    }
+    
+    .form-input:focus {
+        border-color: var(--nu-green);
+        box-shadow: 0 0 0 3px rgba(26, 93, 26, 0.1);
+    }
+    
+    .login-btn {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(135deg, var(--nu-green), var(--nu-green-light));
+        color: var(--nu-white);
+        border: none;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: var(--transition);
+        margin-top: 10px;
+    }
+    
+    .login-btn:hover {
+        background: linear-gradient(135deg, var(--nu-green-light), var(--nu-green));
+        transform: translateY(-2px);
+        box-shadow: var(--btn-shadow-hover);
+    }
+    
+    .login-footer {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid var(--nu-gray);
+    }
+    
+    .login-footer a {
+        color: var(--nu-green);
+        font-weight: 600;
+    }
+    
+    .login-footer a:hover {
+        text-decoration: underline;
+    }
+    
+    .security-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        color: var(--nu-green);
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    
+    .nafath-banner {
+        background: linear-gradient(135deg, #0088cc, #005a8c);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        margin-bottom: 25px;
+        border-left: 5px solid var(--nu-gold);
+    }
+    
+    @media (max-width: 768px) {
+        .login-page {
+            padding: 80px 15px 30px;
+        }
+        
+        .login-container {
+            max-width: 100%;
+        }
+        
+        .login-body {
+            padding: 30px 20px;
+        }
+    }
+</style>
