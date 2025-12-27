@@ -5,450 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نظام حجز السكن الجامعي - جامعة نجران</title>
     
-    <!-- رابط ملف الأنماط الرئيسي -->
+    <!-- روابط CSS -->
     <link rel="stylesheet" href="css/main.css">
-    
-    <!-- Font Awesome للأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- إعدادات إضافية -->
     <style>
-        /* أنيميشن عند التمرير */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+        /* أنماط خاصة بالصفحة الرئيسية */
+        .hero-section {
+            background: linear-gradient(135deg, #1a5d1a, #2e8b57);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
         }
         
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 50px 20px;
         }
         
-        /* شعار الجامعة المتحرك */
-        .logo-animation {
-            animation: logoSpin 10s linear infinite;
-        }
-        
-        @keyframes logoSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <!-- الهيدر الرئيسي -->
-    <header class="main-header">
-        <div class="container">
-            <div class="header-content">
-                <!-- قسم الشعار -->
-                <div class="logo-section">
-                    <div class="university-logo logo-animation">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <div class="logo-text">
-                        <h1>جامعة نجران</h1>
-                        <p>نظام حجز السكن الجامعي الذكي</p>
-                    </div>
-                </div>
-                
-                <!-- زر القائمة للهاتف -->
-                <button class="menu-toggle" id="menuToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                
-                <!-- معلومات الاتصال -->
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>017-1234567</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>housing@nu.edu.sa</span>
-                    </div>
-                </div>
+    <!-- المحتوى الأساسي -->
+    <section class="hero-section">
+        <h1>نظام حجز السكن الجامعي</h1>
+        <p>جامعة نجران - نظام ذكي لإدارة السكن الجامعي</p>
+        <a href="login.html" class="btn btn-primary mt-30">
+            <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+        </a>
+    </section>
+    
+    <!-- المميزات -->
+    <div class="container">
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-shield-alt" style="font-size: 3rem; color: #1a5d1a;"></i>
+                <h3>أمان عالي</h3>
+                <p>نظام مشفر مع بوابة نفاذ الوطنية</p>
             </div>
             
-            <!-- قائمة التنقل -->
-            <nav class="navbar" id="navbar">
-                <a href="#home" class="nav-link active">الرئيسية</a>
-                <a href="#stats" class="nav-link">الإحصائيات</a>
-                <a href="#features" class="nav-link">المميزات</a>
-                <a href="#nafath" class="nav-link">نفاذ الوطني</a>
-                <a href="#priority" class="nav-link">المفاضلة الذكية</a>
-                <a href="#news" class="nav-link">الأخبار</a>
-                <a href="login.html" class="nav-link">تسجيل الدخول</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- القسم البطل -->
-    <section class="hero-section" id="home">
-        <div class="hero-overlay"></div>
-        <div class="hero-content animate-fade-up">
-            <h1 class="hero-title">نظام حجز السكن الجامعي الذكي</h1>
-            <p class="hero-subtitle">
-                نظام متكامل لإدارة وتخصيص السكن الجامعي وفق معايير المفاضلة الآلية.<br>
-                يضمن النظام توزيعاً عادلاً للغرف بناءً على الأولوية الأكاديمية والمسافة الجغرافية.
-            </p>
-            <div class="hero-buttons">
-                <a href="login.html" class="btn btn-primary btn-lg">
-                    <i class="fas fa-sign-in-alt"></i> دخول عبر نفاذ
-                </a>
-                <a href="#features" class="btn btn-secondary btn-lg">
-                    <i class="fas fa-play-circle"></i> شاهد العرض التوضيحي
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم الإحصائيات -->
-    <section class="stats-section" id="stats">
-        <div class="container">
-            <div class="section-title reveal">
-                <h2>إحصائيات النظام</h2>
-                <p>أرقام وإحصائيات تعكس حجم وكفاءة النظام في خدمة طلاب جامعة نجران</p>
+            <div class="feature-card">
+                <i class="fas fa-brain" style="font-size: 3rem; color: #1a5d1a;"></i>
+                <h3>مفاضلة ذكية</h3>
+                <p>توزيع عادل بناءً على المعايير الأكاديمية</p>
             </div>
             
-            <div class="stats-grid">
-                <div class="stat-card reveal">
-                    <div class="stat-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="stat-number" data-count="5000">0</div>
-                    <div class="stat-label">طالب مستفيد</div>
-                </div>
-                
-                <div class="stat-card reveal">
-                    <div class="stat-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <div class="stat-number" data-count="25">0</div>
-                    <div class="stat-label">مبنى سكني</div>
-                </div>
-                
-                <div class="stat-card reveal">
-                    <div class="stat-icon">
-                        <i class="fas fa-bed"></i>
-                    </div>
-                    <div class="stat-number" data-count="1200">0</div>
-                    <div class="stat-label">غرفة متاحة</div>
-                </div>
-                
-                <div class="stat-card reveal">
-                    <div class="stat-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="stat-number" data-count="98">0</div>
-                    <div class="stat-label">% رضا المستخدمين</div>
-                </div>
+            <div class="feature-card">
+                <i class="fas fa-bolt" style="font-size: 3rem; color: #1a5d1a;"></i>
+                <h3>سرعة وأداء</h3>
+                <p>واجهة سريعة وسهلة الاستخدام</p>
             </div>
         </div>
-    </section>
-
-    <!-- قسم المميزات -->
-    <section class="features-section" id="features">
-        <div class="container">
-            <div class="section-title reveal">
-                <h2>مميزات النظام</h2>
-                <p>نظام ذكي مصمم لخدمة طلاب جامعة نجران بأعلى معايير الجودة والكفاءة</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card reveal">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>أمان عالي المستوى</h3>
-                    <p>نظام مشفر ومحمي بالكامل مع دعم البوابة الوطنية الموحدة (نفاذ) لأعلى درجات الأمان</p>
-                </div>
-                
-                <div class="feature-card reveal">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>مفاضلة ذكية</h3>
-                    <p>توزيع الغرف بناءً على معايير علمية تشمل المعدل التراكمي والمسافة الجغرافية والحالة الاجتماعية</p>
-                </div>
-                
-                <div class="feature-card reveal">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>سرعة وأداء</h3>
-                    <p>معالجة سريعة للطلبات مع واجهة مستخدم سلسة ومصممة لتحقيق أفضل تجربة مستخدم</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم نفاذ الوطني -->
-    <section class="nafath-section" id="nafath">
-        <div class="container">
-            <div class="section-title reveal">
-                <h2>الدخول عبر البوابة الوطنية</h2>
-                <p>نظام آمن ومؤمن بالكامل مع بوابة نفاذ الوطنية الموحدة</p>
-            </div>
-            
-            <div class="nafath-card reveal">
-                <div class="nafath-logo">
-                    <i class="fas fa-user-shield"></i>
-                </div>
-                <h3>بوابة نفاذ الوطنية</h3>
-                <p>
-                    نظام الدخول الموحد للحكومة السعودية الذي يضمن أعلى مستويات الأمان والخصوصية.
-                    يمكن للطلاب والطالبات الدخول باستخدام بياناتهم الوطنية الموثقة.
-                </p>
-                
-                <div class="nafath-security">
-                    <p><i class="fas fa-lock"></i> بياناتك محمية ومشغرة بأعلى معايير الأمان</p>
-                </div>
-                
-                <a href="login.html" class="btn btn-primary btn-lg w-100">
-                    <i class="fas fa-sign-in-alt"></i> دخول عبر نفاذ
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم المفاضلة الذكية -->
-    <section class="priority-section" id="priority">
-        <div class="container">
-            <div class="section-title reveal">
-                <h2>نظام المفاضلة الذكي</h2>
-                <p>آلية عادلة وذكية لتوزيع الغرف السكنية بناءً على معايير محددة</p>
-            </div>
-            
-            <div class="priority-grid">
-                <div class="priority-item reveal">
-                    <div class="priority-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h4>المعدل التراكمي</h4>
-                    <p>يتم منح نقاط إضافية بناءً على المعدل التراكمي للطالب، حيث يحصل الطلاب المتفوقون على أولوية أعلى</p>
-                </div>
-                
-                <div class="priority-item reveal">
-                    <div class="priority-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h4>المسافة الجغرافية</h4>
-                    <p>يتم مراعاة مسافة سكن الطالب الأصلي من الجامعة، حيث يتم تفضيل الطلاب من المدن البعيدة</p>
-                </div>
-                
-                <div class="priority-item reveal">
-                    <div class="priority-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h4>الحالة الاجتماعية</h4>
-                    <p>مراعاة الظروف الاجتماعية الخاصة للطلاب وتقديم أولوية للطلاب ذوي الظروف الخاصة</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم الأخبار -->
-    <section class="news-section" id="news">
-        <div class="container">
-            <div class="section-title reveal">
-                <h2>آخر أخبار السكن</h2>
-                <p>تابع آخر التحديثات والإعلانات الخاصة بالسكن الجامعي</p>
-            </div>
-            
-            <div class="news-grid">
-                <div class="news-card reveal">
-                    <div class="news-image">
-                        <div class="news-date">15 مارس 2024</div>
-                    </div>
-                    <div class="news-content">
-                        <h4>بدء مرحلة التسجيل للفصل الدراسي الثاني</h4>
-                        <p>تعلن عمادة شؤون الطلاب عن بدء مرحلة التسجيل في السكن الجامعي للفصل الدراسي الثاني للعام 1445هـ</p>
-                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                
-                <div class="news-card reveal">
-                    <div class="news-image">
-                        <div class="news-date">10 مارس 2024</div>
-                    </div>
-                    <div class="news-content">
-                        <h4>إطلاق النظام الذكي الجديد</h4>
-                        <p>تم إطلاق النسخة المطورة من نظام حجز السكن الجامعي مع ميزات جديدة وتحسينات في تجربة المستخدم</p>
-                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                
-                <div class="news-card reveal">
-                    <div class="news-image">
-                        <div class="news-date">05 مارس 2024</div>
-                    </div>
-                    <div class="news-content">
-                        <h4>ورشة عمل عن النظام الجديد</h4>
-                        <p>تنظم العمادة ورشة تعريفية عن النظام الجديد لجميع الطلاب المستجدين والموظفين المعنيين</p>
-                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    </div>
+    
     <!-- التذييل -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h4>جامعة نجران</h4>
-                    <p>نظام حجز السكن الجامعي الذكي، مصمم لخدمة طلاب وطالبات الجامعة بأعلى معايير الجودة والكفاءة.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h4>روابط سريعة</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html"><i class="fas fa-home"></i> الصفحة الرئيسية</a></li>
-                        <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</a></li>
-                        <li><a href="#"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
-                        <li><a href="#"><i class="fas fa-file-alt"></i> الشروط والأحكام</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h4>تواصل معنا</h4>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-phone"></i> 017-1234567</a></li>
-                        <li><a href="#"><i class="fas fa-envelope"></i> housing@nu.edu.sa</a></li>
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> جامعة نجران - منطقة نجران</a></li>
-                        <li><a href="#"><i class="fas fa-clock"></i> من الأحد إلى الخميس 8ص - 4م</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>جميع الحقوق محفوظة © 2024 جامعة نجران - نظام حجز السكن الجامعي</p>
-                <p style="margin-top: 10px; font-size: 0.8rem;">تم التطوير بواسطة عمادة تقنية المعلومات</p>
-            </div>
-        </div>
+    <footer class="footer">
+        <p>جميع الحقوق محفوظة © 2024 جامعة نجران</p>
     </footer>
 
     <!-- JavaScript -->
-    <script>
-        // القائمة المنسدلة للهاتف
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menuToggle');
-            const navbar = document.getElementById('navbar');
-            
-            menuToggle.addEventListener('click', function() {
-                navbar.classList.toggle('active');
-                menuToggle.innerHTML = navbar.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i>' 
-                    : '<i class="fas fa-bars"></i>';
-            });
-            
-            // إغلاق القائمة عند النقر على رابط
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    navbar.classList.remove('active');
-                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                });
-            });
-            
-            // أنيميشن الإحصائيات
-            function animateStats() {
-                const statNumbers = document.querySelectorAll('.stat-number');
-                
-                statNumbers.forEach(stat => {
-                    const target = parseInt(stat.getAttribute('data-count'));
-                    const duration = 2000;
-                    const increment = target / (duration / 16);
-                    let current = 0;
-                    
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= target) {
-                            stat.textContent = target;
-                            clearInterval(timer);
-                        } else {
-                            stat.textContent = Math.floor(current);
-                        }
-                    }, 16);
-                });
-            }
-            
-            // أنيميشن عند التمرير
-            function revealOnScroll() {
-                const reveals = document.querySelectorAll('.reveal');
-                
-                reveals.forEach(element => {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = element.getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    
-                    if (elementTop < windowHeight - elementVisible) {
-                        element.classList.add('active');
-                        
-                        // تشغيل أنيميشن الإحصائيات عند ظهورها
-                        if (element.closest('.stats-section')) {
-                            animateStats();
-                        }
-                    }
-                });
-            }
-            
-            // تحميل أولي للعناصر المرئية
-            revealOnScroll();
-            
-            // استماع للتمرير
-            window.addEventListener('scroll', revealOnScroll);
-            
-            // التنقل السلس
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // تأثير الشعار
-            const logo = document.querySelector('.university-logo');
-            logo.addEventListener('mouseenter', () => {
-                logo.style.animation = 'logoSpin 2s linear infinite';
-            });
-            
-            logo.addEventListener('mouseleave', () => {
-                logo.style.animation = 'logoSpin 10s linear infinite';
-            });
-            
-            // تتبع النقر على الروابط
-            document.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function() {
-                    console.log(`تم النقر على: ${this.textContent}`);
-                });
-            });
-        });
-        
-        // تتبع خطأ 404 للصور
-        window.addEventListener('error', function(e) {
-            if (e.target.tagName === 'IMG') {
-                console.warn(`صورة غير موجودة: ${e.target.src}`);
-                e.target.style.display = 'none';
-            }
-        }, true);
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
