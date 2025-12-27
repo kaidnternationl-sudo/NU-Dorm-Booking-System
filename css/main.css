@@ -1,0 +1,220 @@
+/* ملف الأنماط الرئيسي - جامعة نجران */
+/* تأكد من حفظ هذا الملف في مجلد css/ (حروف صغيرة) */
+
+/* ======== إعدادات أساسية ======== */
+:root {
+    /* الألوان الرسمية للجامعة */
+    --nu-green: #1a5d1a;
+    --nu-green-light: #2e8b57;
+    --nu-gold: #d4af37;
+    --nu-white: #ffffff;
+    --nu-light: #f8f9fa;
+    --nu-gray: #e9ecef;
+    --nu-dark: #212529;
+    --nu-blue: #0d6efd;
+    --nu-red: #dc3545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: var(--nu-light);
+    color: var(--nu-dark);
+    line-height: 1.6;
+    direction: rtl;
+}
+
+/* ======== تنسيقات عامة ======== */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-20 { margin-top: 20px; }
+.mt-30 { margin-top: 30px; }
+.mt-40 { margin-top: 40px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-30 { margin-bottom: 30px; }
+.mb-40 { margin-bottom: 40px; }
+
+/* ======== الأزرار ======== */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--nu-green), var(--nu-green-light));
+    color: var(--nu-white);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--nu-green-light), var(--nu-green));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(26, 93, 26, 0.3);
+}
+
+.btn-secondary {
+    background: var(--nu-gray);
+    color: var(--nu-dark);
+}
+
+.btn-secondary:hover {
+    background: #d0d0d0;
+}
+
+/* ======== البطاقات ======== */
+.card {
+    background: var(--nu-white);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+    border: 1px solid var(--nu-gray);
+}
+
+/* ======== نموذج الإدخال ======== */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--nu-dark);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--nu-gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--nu-green);
+    box-shadow: 0 0 0 3px rgba(26, 93, 26, 0.1);
+}
+
+/* ======== التنبيهات ======== */
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-right: 5px solid #4caf50;
+}
+
+.alert-warning {
+    background-color: #fff3e0;
+    color: #ef6c00;
+    border-right: 5px solid #ff9800;
+}
+
+.alert-danger {
+    background-color: #ffebee;
+    color: #c62828;
+    border-right: 5px solid #f44336;
+}
+
+/* ======== الجداول ======== */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table th {
+    background-color: var(--nu-green);
+    color: var(--nu-white);
+    padding: 15px;
+    text-align: right;
+    font-weight: 600;
+}
+
+.table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--nu-gray);
+}
+
+.table tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* ======== التذييل ======== */
+.footer {
+    background-color: var(--nu-dark);
+    color: var(--nu-white);
+    padding: 30px 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* ======== التجاوب مع الهواتف ======== */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* ======== أنيميشن ======== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--nu-gray);
+    border-top: 4px solid var(--nu-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
