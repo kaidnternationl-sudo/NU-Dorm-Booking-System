@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سياسات وشروط السكن الجامعي - جامعة نجران</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --nu-green: #006837;
+            --nu-gold: #D4AF37;
+            --light: #F8F9FA;
+            --light-gray: #ECF0F1;
+            --dark: #2C3E50;
+            --dark-gray: #7F8C8D;
+            --success: #27AE60;
+            --warning: #F39C12;
+            --danger: #E74C3C;
+            --info: #3498DB;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, rgba(0,104,55,0.05), rgba(212,175,55,0.05));
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
+        }
+        
+        .terms-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border: 3px solid var(--nu-green);
+        }
+        
+        .terms-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 4px solid var(--nu-gold);
+        }
+        
+        .terms-header h1 {
+            color: var(--nu-green);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .terms-header h1 i {
+            color: var(--nu-gold);
+            font-size: 2.8rem;
+        }
+        
+        .terms-header p {
+            color: var(--dark-gray);
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        
+        .terms-warning {
+            background: linear-gradient(135deg, rgba(231,76,60,0.1), rgba(192,57,43,0.05));
+            border: 2px solid var(--danger);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .terms-warning i {
+            font-size: 2rem;
+            color: var(--danger);
+            flex-shrink: 0;
+        }
+        
+        .terms-warning strong {
+            color: var(--danger);
+            font-size: 1.1rem;
+        }
+        
+        .terms-section {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: var(--light);
+            border-radius: 15px;
+            border-right: 5px solid var(--nu-green);
+            transition: transform 0.3s ease;
+        }
+        
+        .terms-section:hover {
+            transform: translateX(-5px);
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .terms-section h2 {
+            color: var(--nu-green);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(0,104,55,0.1);
+        }
+        
+        .terms-section h2 i {
+            color: var(--nu-gold);
+            font-size: 1.8rem;
+        }
+        
+        .terms-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .terms-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        .terms-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .terms-list li i {
+            color: var(--success);
+            font-size: 1.3rem;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, var(--nu-green), var(--nu-gold));
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            animation: bounce 2s ease infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .scroll-indicator.show {
+            display: flex;
+        }
+        
+        .accept-terms {
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(0,104,55,0.05);
+            border-radius: 15px;
+            border: 3px solid var(--nu-green);
+        }
+        
+        .accept-terms label {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--nu-green);
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+        
+        .accept-terms input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: var(--nu-green);
+        }
+        
+        .digital-signature {
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid var(--light-gray);
+            margin-top: 20px;
+        }
+        
+        .digital-signature label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--nu-green);
+        }
+        
+        .digital-signature input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .digital-signature input:focus {
+            outline: none;
+            border-color: var(--nu-green);
+            box-shadow: 0 0 0 3px rgba(0,104,55,0.1);
+        }
+        
+        .terms-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid var(--light-gray);
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 16px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            min-width: 200px;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--nu-green), #008744);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,104,55,0.3);
+        }
+        
+        .btn-success:hover:not(:disabled) {
+            background: linear-gradient(135deg, #008744, var(--nu-green));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,104,55,0.4);
+        }
+        
+        .btn-success:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--nu-green);
+            border: 2px solid var(--nu-green);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--nu-green);
+            color: white;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--dark-gray);
+            border: 2px solid var(--light-gray);
+        }
+        
+        .btn-outline:hover {
+            background: var(--light-gray);
+            color: var(--dark);
+        }
+        
+        @media (max-width: 768px) {
+            .terms-container {
+                padding: 20px;
+                margin: 20px auto;
+            }
+            
+            .terms-header h1 {
+                font-size: 2rem;
+                flex-direction: column;
+            }
+            
+            .terms-section {
+                padding: 20px;
+            }
+            
+            .terms-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .terms-list li {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                min-width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .terms-actions {
+                flex-direction: column;
+            }
+            
+            .scroll-indicator {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- مؤشر التمرير -->
+    <div class="scroll-indicator" id="scrollIndicator">
+        <i class="fas fa-arrow-down"></i>
+        <span>قم بالتمرير لأسفل للقراءة كاملة</span>
+    </div>
+
+    <div class="terms-container">
+        <!-- رأس الصفحة -->
+        <div class="terms-header">
+            <h1>
+                <i class="fas fa-file-contract"></i>
+                سياسات وشروط السكن الجامعي
+            </h1>
+            <p>جامعة نجران - الفصل الدراسي الثاني 2024/2025</p>
+        </div>
+
+        <!-- تنبيه مهم -->
+        <div class="terms-warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div>
+                <strong>تنبيه هام:</strong> قراءة هذه الشروط والتوقيع عليها إلكترونياً تعتبر موافقة ملزمة قانونياً. 
+                يرجى القراءة بعناية قبل المتابعة. عدم الالتزام قد يؤدي إلى إلغاء الحجز أو عقوبات أخرى.
+            </div>
+        </div>
+
+        <!-- السياسات العامة -->
+        <div class="terms-section">
+            <h2><i class="fas fa-balance-scale"></i> السياسات العامة</h2>
+            <ul class="terms-list">
+                <li><i class="fas fa-check-circle"></i> الالتزام بالهوية الإسلامية والقيم المجتمعية السعودية.</li>
+                <li><i class="fas fa-check-circle"></i> الحفاظ على الممتلكات العامة والخاصة ودفع تكاليف أي تلف عمدي.</li>
+                <li><i class="fas fa-check-circle"></i> الالتزام بمواعيد الدخول والخروج المحددة من إدارة السكن.</li>
+                <li><i class="fas fa-check-circle"></i> منع التدخين في جميع مرافق السكن بشكل تام.</li>
+                <li><i class="fas fa-check-circle"></i> استخدام شبكة الإنترنت لأغراض تعليمية وأخلاقية فقط.</li>
+                <li><i class="fas fa-check-circle"></i> الالتزام بالزي الإسلامي الساتر داخل الحرم الجامعي.</li>
+                <li><i class="fas fa-check-circle"></i> منع الاحتفاظ بأي مواد خطرة أو ممنوعة.</li>
+                <li><i class="fas fa-check-circle"></i> الالتزام بمواعيد الصلاة في المصليات المخصصة.</li>
+            </ul>
+        </div>
+
+        <!-- قسم الطلاب -->
+        <div class="terms-section">
+            <h2><i class="fas fa-male"></i> قسم الطلاب</h2>
+            <ul class="terms-list">
+                <li><i class="fas fa-check-circle"></i> منع الزيارات في غير الأوقات المحددة (7 مساءً - 10 مساءً).</li>
+                <li><i class="fas fa-check-circle"></i> المسؤولية المشتركة عن نظافة الغرف والمرافق العامة.</li>
+                <li><i class="fas fa-check-circle"></i> الحفاظ على الهدوء في أوقات المذاكرة والراحة (10 مساءً - 7 صباحاً).</li>
+                <li><i class="fas fa-check-circle"></i> تقييد الزيارات بالصالة المخصصة وبموافقة مسبقة من الإدارة.</li>
+                <li><i class="fas fa-check-circle"></i> منع استخدام الأجهزة ذات الأصوات العالية بعد الساعة 10 مساءً.</li>
+                <li><i class="fas fa-check-circle"></i> الإبلاغ عن أي حالة مرضية أو طارئة فوراً للإدارة.</li>
+                <li><i class="fas fa-check-circle"></i> المشاركة في أنشطة السكن الثقافية والاجتماعية.</li>
+            </ul>
+        </div>
+
+        <!-- قسم الطالبات -->
+        <div class="terms-section">
+            <h2><i class="fas fa-female"></i> قسم الطالبات</h2>
+            <ul class="terms-list">
+                <li><i class="fas fa-check-circle"></i> الالتزام بنظام سجل حضور وانصراف رقمي عند الدخول والخروج.</li>
+                <li><i class="fas fa-check-circle"></i> الحصول على تصاريح خروج إلكترونية مرتبطة بولي الأمر.</li>
+                <li><i class="fas fa-check-circle"></i> منع التصوير داخل مرافق السكن لضمان الخصوصية التامة.</li>
+                <li><i class="fas fa-check-circle"></i> حظر الزيارات النسائية غير المصرح بها.</li>
+                <li><i class="fas fa-check-circle"></i> الالتزام بالزي الشرعي الساتر داخل الحرم الجامعي.</li>
+                <li><i class="fas fa-check-circle"></i> منع الخروج بعد الساعة 10 مساءً إلا بتصريح رسمي.</li>
+                <li><i class="fas fa-check-circle"></i> استخدام القنوات الرسمية للتواصل مع إدارة السكن.</li>
+            </ul>
+        </div>
+
+        <!-- الأمن والسلامة -->
+        <div class="terms-section">
+            <h2><i class="fas fa-shield-alt"></i> الأمن والسلامة</h2>
+            <ul class="terms-list">
+                <li><i class="fas fa-check-circle"></i> الالتزام بتعليمات السلامة والطوارئ والإخلاء.</li>
+                <li><i class="fas fa-check-circle"></i> الحفاظ على بطاقة السكن الرقمية وعدم مشاركتها مع الآخرين.</li>
+                <li><i class="fas fa-check-circle"></i> منع إعارة بطاقة الدخول لأي شخص آخر.</li>
+                <li><i class="fas fa-check-circle"></i> إغلاق أبواب الغرف ومخارج الطوارئ بشكل صحيح.</li>
+                <li><i class="fas fa-check-circle"></i> الإبلاغ عن أي أجهزة أو معدات معطلة فوراً.</li>
+                <li><i class="fas fa-check-circle"></i> منع استخدام الأجهزة الكهربائية غير المرخصة.</li>
+                <li><i class="fas fa-check-circle"></i> الالتزام بإجراءات السلامة في حالات الطوارئ.</li>
+            </ul>
+        </div>
+
+        <!-- المسؤوليات المالية -->
+        <div class="terms-section">
+            <h2><i class="fas fa-money-bill-wave"></i> المسؤوليات المالية</h2>
+            <ul class="terms-list">
+                <li><i class="fas fa-check-circle"></i> دفع رسوم السكن في المواعيد المحددة (قبل بداية كل فصل).</li>
+                <li><i class="fas fa-check-circle"></i> تحمل تكاليف أي أضرار تلحق بالغرفة أو مرافقها.</li>
+                <li><i class="fas fa-check-circle"></i> عدم استرداد الرسوم في حال الانسحاب بعد الموعد النهائي.</li>
+                <li><i class="fas fa-check-circle"></i> دفع غرامة التأخير في حال عدم الإخلاء في الموعد المحدد.</li>
+                <li><i class="fas fa-check-circle"></i> تحمل تكاليف الخدمات الإضافية المستخدمة.</li>
+                <li><i class="fas fa-check-circle"></i> السداد الإلكتروني عبر القنوات الرسمية فقط.</li>
+            </ul>
+        </div>
+
+        <!-- الإجراءات التأديبية -->
+        <div class="terms-section">
+            <h2><i class="fas fa-gavel"></i> الإجراءات التأديبية</h2>
+            <ul class="terms-list">
+                <li><i class="fas fa-check-circle"></i> يحق للإدارة إلغاء الحجز في حال مخالفة الشروط.</li>
+                <li><i class="fas fa-check-circle"></i> يمكن فرض غرامات مالية للمخالفات المتكررة.</li>
+                <li><i class="fas fa-check-circle"></i> قد يؤدي المخالفات الجسيمة إلى الحرمان من السكن.</li>
+                <li><i class="fas fa-check-circle"></i> يتم إبلاغ الكلية التابع لها الطالب بأي مخالفات جسيمة.</li>
+                <li><i class="fas fa-check-circle"></i> يحق للإدارة نقل الطالب لغرفة أخرى إذا لزم الأمر.</li>
+                <li><i class="fas fa-check-circle"></i> تطبق اللوائح التنظيمية للجامعة في حال المخالفات.</li>
+            </ul>
+        </div>
+
+        <!-- قبول الشروط -->
+        <div class="accept-terms">
+            <label>
+                <input type="checkbox" id="acceptCheckbox">
+                <span>أقر بأنني قد قرأت وفهمت جميع الشروط والأحكام المذكورة أعلاه وأوافق عليها</span>
+            </label>
+
+            <!-- التوقيع الرقمي -->
+            <div class="digital-signature">
+                <label for="signature">
+                    <i class="fas fa-signature"></i> التوقيع الرقمي (يرجى كتابة الاسم الرباعي)
+                </label>
+                <input type="text" id="signature" placeholder="اكتب اسمك الرباعي هنا للتوقيع الإلكتروني">
+                <small style="display: block; margin-top: 10px; color: var(--dark-gray); font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> هذا التوقيع يعادل التوقيع اليدوي ويلزمك قانونياً
+                </small>
+            </div>
+        </div>
+
+        <!-- أزرار الإجراءات -->
+        <div class="terms-actions">
+            <button class="btn btn-success" id="acceptBtn" disabled>
+                <i class="fas fa-check-circle"></i>
+                قبول الشروط والمتابعة
+            </button>
+            <button class="btn btn-secondary" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                طباعة الشروط
+            </button>
+            <button class="btn btn-outline" onclick="window.history.back()">
+                <i class="fas fa-arrow-right"></i>
+                العودة للخلف
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // التحكم في مؤشر التمرير
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const bodyHeight = document.body.scrollHeight;
+            
+            // إظهار المؤشر إذا لم يصل المستخدم للأسفل
+            if (scrollPosition < bodyHeight - windowHeight - 100) {
+                scrollIndicator.classList.add('show');
+            } else {
+                scrollIndicator.classList.remove('show');
+            }
+            
+            // التحقق من قبول الشروط
+            checkAcceptance();
+        });
+
+        // التحقق من قبول الشروط
+        function checkAcceptance() {
+            const checkbox = document.getElementById('acceptCheckbox');
+            const signature = document.getElementById('signature');
+            const acceptBtn = document.getElementById('acceptBtn');
+            
+            const isScrolledToBottom = 
+                (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100;
+            
+            // تفعيل الزر فقط عند التمرير للأسفل وتفعيل المربع والتوقيع
+            if (isScrolledToBottom && checkbox.checked && signature.value.trim().length > 0) {
+                acceptBtn.disabled = false;
+            } else {
+                acceptBtn.disabled = true;
+            }
+        }
+
+        // الاستماع للتغييرات
+        document.getElementById('acceptCheckbox').addEventListener('change', checkAcceptance);
+        document.getElementById('signature').addEventListener('input', checkAcceptance);
+
+        // زر القبول
+        document.getElementById('acceptBtn').addEventListener('click', function() {
+            const signature = document.getElementById('signature').value.trim();
+            
+            // التحقق من أن التوقيع كامل
+            if (signature.split(' ').length < 3) {
+                alert('الرجاء كتابة الاسم الرباعي كاملاً للتوقيع');
+                return;
+            }
+            
+            // حفظ التوقيع في localStorage
+            localStorage.setItem('termsAccepted', 'true');
+            localStorage.setItem('digitalSignature', signature);
+            localStorage.setItem('termsAcceptedAt', new Date().toISOString());
+            
+            // إنشاء PDF افتراضي للتعهدات
+            createTermsPDF(signature);
+            
+            // الانتقال لصفحة النجاح
+            window.location.href = 'success.html';
+        });
+
+        // إنشاء PDF للتعهدات (محاكاة)
+        function createTermsPDF(signature) {
+            const termsData = {
+                studentName: signature,
+                acceptedDate: new Date().toLocaleDateString('ar-SA'),
+                termsVersion: '2.0',
+                termsHash: 'TERMS-' + Date.now()
+            };
+            
+            localStorage.setItem('termsPDF', JSON.stringify(termsData));
+            
+            console.log('تم إنشاء وثيقة التعهدات للمستخدم:', signature);
+            return true;
+        }
+
+        // تحميل التوقيع المسبق إن وجد
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedSignature = localStorage.getItem('digitalSignature');
+            if (savedSignature) {
+                document.getElementById('signature').value = savedSignature;
+                document.getElementById('acceptCheckbox').checked = true;
+                checkAcceptance();
+            }
+            
+            // تمرير تلقائي سريع للاختبار
+            setTimeout(() => {
+                if (!savedSignature && window.location.href.includes('test')) {
+                    document.getElementById('signature').value = 'محمد أحمد العتيبي';
+                    document.getElementById('acceptCheckbox').checked = true;
+                    window.scrollTo(0, document.body.scrollHeight);
+                    checkAcceptance();
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
