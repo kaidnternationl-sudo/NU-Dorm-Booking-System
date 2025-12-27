@@ -1,145 +1,104 @@
-<style>
-    /* أنماط خاصة بصفحة تسجيل الدخول */
-    .login-page {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #f0f9f0 0%, #ffffff 100%);
-        padding: 100px 20px 40px;
-    }
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - نظام سكن جامعة نجران</title>
     
-    .login-container {
-        background: var(--nu-white);
-        border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(26, 93, 26, 0.15);
-        overflow: hidden;
-        width: 100%;
-        max-width: 500px;
-        border: 2px solid var(--nu-gray);
-    }
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    .login-header {
-        background: linear-gradient(135deg, var(--nu-green), var(--nu-green-light));
-        padding: 40px 30px;
-        text-align: center;
-        color: var(--nu-white);
-    }
-    
-    .login-header h1 {
-        font-size: 2rem;
-        margin-bottom: 10px;
-        font-weight: 800;
-    }
-    
-    .login-header p {
-        opacity: 0.9;
-        font-size: 1.1rem;
-    }
-    
-    .login-body {
-        padding: 40px;
-    }
-    
-    .form-group {
-        margin-bottom: 25px;
-    }
-    
-    .form-label {
-        display: block;
-        margin-bottom: 8px;
-        color: var(--nu-dark);
-        font-weight: 600;
-        font-size: 1rem;
-    }
-    
-    .form-input {
-        width: 100%;
-        padding: 15px 20px;
-        border: 2px solid var(--nu-gray);
-        border-radius: 10px;
-        font-size: 1rem;
-        font-family: 'Tajawal', sans-serif;
-        transition: var(--transition);
-    }
-    
-    .form-input:focus {
-        border-color: var(--nu-green);
-        box-shadow: 0 0 0 3px rgba(26, 93, 26, 0.1);
-    }
-    
-    .login-btn {
-        width: 100%;
-        padding: 16px;
-        background: linear-gradient(135deg, var(--nu-green), var(--nu-green-light));
-        color: var(--nu-white);
-        border: none;
-        border-radius: 10px;
-        font-size: 1.1rem;
-        font-weight: 700;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        transition: var(--transition);
-        margin-top: 10px;
-    }
-    
-    .login-btn:hover {
-        background: linear-gradient(135deg, var(--nu-green-light), var(--nu-green));
-        transform: translateY(-2px);
-        box-shadow: var(--btn-shadow-hover);
-    }
-    
-    .login-footer {
-        text-align: center;
-        margin-top: 30px;
-        padding-top: 20px;
-        border-top: 1px solid var(--nu-gray);
-    }
-    
-    .login-footer a {
-        color: var(--nu-green);
-        font-weight: 600;
-    }
-    
-    .login-footer a:hover {
-        text-decoration: underline;
-    }
-    
-    .security-badge {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 20px;
-        color: var(--nu-green);
-        font-weight: 600;
-        font-size: 0.9rem;
-    }
-    
-    .nafath-banner {
-        background: linear-gradient(135deg, #0088cc, #005a8c);
-        color: white;
-        padding: 15px;
-        border-radius: 10px;
-        text-align: center;
-        margin-bottom: 25px;
-        border-left: 5px solid var(--nu-gold);
-    }
-    
-    @media (max-width: 768px) {
+    <style>
+        /* أنماطك التي أرسلتها وضعتها لك هنا لتعمل الصفحة فوراً */
         .login-page {
-            padding: 80px 15px 30px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f0f9f0 0%, #ffffff 100%);
+            padding: 40px 20px;
         }
-        
         .login-container {
-            max-width: 100%;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(26, 93, 26, 0.15);
+            overflow: hidden;
+            width: 100%;
+            max-width: 500px;
+            border: 2px solid #e9ecef;
         }
-        
-        .login-body {
-            padding: 30px 20px;
+        .login-header {
+            background: linear-gradient(135deg, #1a5d1a, #2e8b57);
+            padding: 30px;
+            text-align: center;
+            color: #ffffff;
         }
-    }
-</style>
+        .nafath-banner {
+            background: linear-gradient(135deg, #0088cc, #005a8c);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 25px;
+            border-left: 5px solid #d4af37;
+        }
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #1a5d1a, #2e8b57);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-page">
+        <div class="login-container">
+            <div class="login-header">
+                <i class="fas fa-university fa-3x mb-3"></i>
+                <h1>جامعة نجران</h1>
+                <p>نظام حجز السكن الجامعي</p>
+            </div>
+
+            <div class="login-body">
+                <div class="nafath-banner">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>تسجيل الدخول عبر النفاذ الوطني الموحد</span>
+                </div>
+
+                <form action="success.html">
+                    <div class="form-group">
+                        <label class="form-label">رقم الهوية الوطنية</label>
+                        <input type="text" class="form-input" placeholder="1XXXXXXXXX" required>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i> دخول عبر نفاذ
+                    </button>
+                </form>
+
+                <div class="security-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>اتصال آمن وموثق NCSC</span>
+                </div>
+            </div>
+
+            <div class="login-footer">
+                <a href="index.html">العودة للرئيسية</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
